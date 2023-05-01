@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_28_040538) do
+ActiveRecord::Schema.define(version: 2023_05_01_165830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,4 +23,23 @@ ActiveRecord::Schema.define(version: 2023_04_28_040538) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "campsites", force: :cascade do |t|
+    t.integer "site_number"
+    t.string "img_url"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "camper_id", null: false
+    t.bigint "campsite_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["camper_id"], name: "index_reservations_on_camper_id"
+    t.index ["campsite_id"], name: "index_reservations_on_campsite_id"
+  end
+
+  add_foreign_key "reservations", "campers"
+  add_foreign_key "reservations", "campsites"
 end

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :reservations
+  resources :campsites
   resources :campers
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
