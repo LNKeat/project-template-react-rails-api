@@ -12,7 +12,7 @@ class ReservationsController < ApplicationController
     end
 
     def create 
-        res = Reservation.find(params_permit)
+        res = Reservation.create(params_permit)
         if res.valid?
             render json: res
         else

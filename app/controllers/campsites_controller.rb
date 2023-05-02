@@ -6,8 +6,8 @@ class CampsitesController < ApplicationController
     end
 
     def create 
-        campsite = Campsite.create(params_permit)
-        render json: campsite
+        campsite = Campsite.create!(params_permit)
+        render json: campsite, status: :created
     end
 
     private

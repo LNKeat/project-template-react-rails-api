@@ -5,14 +5,14 @@ class CampersController < ApplicationController
     end
 
     def create 
-        camper = Camper.create(params_permit)
-        render json: camper
+        camper = Camper.create!(params_permit)
+        render json: camper, status: :created
     end
-
 
     private
 
     def params_permit 
         params.permit(:id, :username, :password_digest, :is_admin)
     end
+
 end
