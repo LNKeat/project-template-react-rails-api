@@ -12,12 +12,8 @@ class ReservationsController < ApplicationController
     end
 
     def create 
-        res = Reservation.create(params_permit)
-        if res.valid?
-            render json: res
-        else
-            render json: { errors: res.errors }, status: :unprocessable_entity
-        end
+        res = Reservation.create!(params_permit)
+        render json: res, status: :created
     end
 
 
