@@ -4,18 +4,12 @@ function campsites({ campsites }) {
     console.log(campsites)
   return (
     <div  className="App">
-    <li>Site 1</li>
-    <li>Site 2</li>
-    <li>Site 3</li>
-    <li>Site 4</li>
-    {/* {campsites.map((spice) => (
-            <SpiceItem
-              key={spice.id}
-              spice={spice}
-              onUpdateSpice={handleUpdateSpice}
-              onDeleteSpice={handleDeleteSpice}
-            />
-          ))} */}
+    {campsites.map((site) => (
+            <li key={site.id}
+            site={site}>
+            Campsite: {site.site_number}- {site.description}
+             </li>
+          ))}
 </div>
   )
 }
