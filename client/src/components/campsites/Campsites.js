@@ -1,7 +1,7 @@
 import React from 'react'
 import Campsite from '../campsite/Campsite';
 
-function campsites({ campsites }) {
+function Campsites({ campsites }) {
     console.log(campsites)
   return (
     <div  className="App">
@@ -12,4 +12,4 @@ function campsites({ campsites }) {
   )
 }
 
-export default campsites
+export default Campsites
