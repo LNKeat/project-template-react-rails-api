@@ -4,9 +4,13 @@ import { useState, useEffect } from 'react';
 import Home from '../pages/home/Home';
 import Header from '../components/header/Header';
 import Campsites from '../components/campsites/Campsites';
-import CampsiteForm from '../components/campsite_form/CampsiteForm';
+import CampsiteForm from '../pages/campsite_form/CampsiteForm';
+import Login from '../components/users/Login';
+import SignUp from '../components/users/Signup';
+
 
 function App() {
+  const [user, setUser] = useState(null)
   const [campsites, setCampsites] = useState([])
 
   useEffect(() => {
@@ -15,12 +19,16 @@ function App() {
       .then(setCampsites);
   }, []);
 
+  
+
   return (
     <div className="App">
       <Header />
       <Home />
       <Campsites campsites={campsites} />
       <CampsiteForm campsites={campsites} />
+      <Login />
+      <SignUp />
 
       {/* <BrowserRouter>
       <Switch>

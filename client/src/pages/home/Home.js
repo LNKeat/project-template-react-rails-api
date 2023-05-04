@@ -1,12 +1,11 @@
 import React from 'react'
 
-function Home() {
-  return (
-    <div>
-        <h1>You should definitely Camp Here!</h1>
-        <p>Use this application to make your next camping reservation with us.</p>
-    </div>
-  )
+function Home({ user })  {
+  if (user) {
+    return <h1>Welcome, {user.username}!</h1>;
+  } else {
+    return <h1>Please Login or Sign Up</h1>;
+  }
 }
 
 export default Home

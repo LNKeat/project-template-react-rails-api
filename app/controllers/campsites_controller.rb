@@ -13,7 +13,7 @@ class CampsitesController < ApplicationController
     private
 
     def params_permit
-        params.permit(:id, :site_number, :description, :img_url)
+        params.permit(:id, :site_number, :description, :img_url, :reservations)
     end
 
    

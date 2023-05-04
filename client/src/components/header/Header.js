@@ -1,11 +1,33 @@
-function Header() {
-    return (
-      <header>
-        <h1>Camp Here</h1>
-        <h3>Your easy source for booking campsites</h3>
-      </header>
-    );
+import React from "react";
+import { Link } from "react-router-dom";
+
+function Header({ user, setUser }) {
+  function handleLogoutClick() {
+    console.log("clicked")
+    // fetch("/logout", { method: "DELETE" }).then((r) => {
+    //   if (r.ok) {
+    //     setUser(null);
+    //   }
+    // });
   }
-  
-  export default Header;
-  
+
+  return (
+    <header>
+      <div>
+        <Link to="/">Home</Link>
+      </div>
+      <div>
+        {user ? (
+          <button onClick={handleLogoutClick}>Logout</button>
+        ) : (
+          <>
+            <Link to="/signup">Signup</Link>
+            <Link to="/login">Login</Link>
+          </>
+        )}
+      </div>
+    </header>
+  );
+}
+
+export default Header;

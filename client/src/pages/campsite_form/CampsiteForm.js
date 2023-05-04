@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
 const initialState = {
-    campsiteNumber: 0,
-    imgUrl: "",
+    site_number: 0,
+    img_url: "",
     description: "",
     reservations: []
 };
@@ -11,6 +11,7 @@ function CampsiteForm({ campsites }) {
     const [formData, setFormData] = useState(initialState);
 
     function handleChange(e) {
+       
         setFormData({
             ...formData,
             [e.target.id]: e.target.value,
@@ -18,7 +19,7 @@ function CampsiteForm({ campsites }) {
     }
 
     function handleSubmit(e) {
-        debugger
+        console.log(formData)
         e.preventDefault();
         fetch("/campsites", {
             method: "POST",
@@ -30,7 +31,7 @@ function CampsiteForm({ campsites }) {
             .then((r) => r.json())
             .then((newSite) => {
                 setFormData(initialState);
-                // onAddCampsite(newCampsite);
+                console.log(newSite);
             });
     }
 
@@ -39,19 +40,19 @@ function CampsiteForm({ campsites }) {
             <h2>New Campsite</h2>
             <h3>Admin's Only</h3>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="campsiteNumber">Campsite Number: </label>
+                <label htmlFor="site_number">Campsite Number: </label>
                 <input
                     type="number"
-                    id="campsiteNumber"
-                    value={formData.campsiteNumber}
+                    id="site_number"
+                    value={formData.site_number}
                     onChange={handleChange}
                 />
                 <br />
-                <label htmlFor="imgUrl">Image URL: </label>
+                <label htmlFor="img_url">Image URL: </label>
                 <input
                     type="url"
-                    id="imgUrl"
-                    value={formData.imgUrl}
+                    id="img_url"
+                    value={formData.img_url}
                     onChange={handleChange}
                 />
                 <br />
