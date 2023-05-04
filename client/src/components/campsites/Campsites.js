@@ -2,7 +2,6 @@ import React from 'react'
 import Campsite from '../campsite/Campsite';
 
 function Campsites({ campsites }) {
-    console.log(campsites)
   return (
     <div  className="App">
     {campsites.map((site) => (

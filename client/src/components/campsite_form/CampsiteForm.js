@@ -1,11 +1,10 @@
 import { useState } from 'react'
 
 const initialState = {
-    title: "",
-    image: "",
-    notes: "",
+    campsiteNumber: 0,
+    imgUrl: "",
     description: "",
-    rating: "",
+    reservations: []
 };
 
 function CampsiteForm({ campsites }) {
@@ -19,6 +18,7 @@ function CampsiteForm({ campsites }) {
     }
 
     function handleSubmit(e) {
+        debugger
         e.preventDefault();
         fetch("/campsites", {
             method: "POST",
@@ -30,47 +30,35 @@ function CampsiteForm({ campsites }) {
             .then((r) => r.json())
             .then((newSite) => {
                 setFormData(initialState);
-                // onAddSpice(newSpice);
+                // onAddCampsite(newCampsite);
             });
     }
 
     return (
         <div className="card">
-            <h2>New Spice</h2>
+            <h2>New Campsite</h2>
+            <h3>Admin's Only</h3>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="title">Title: </label>
+                <label htmlFor="campsiteNumber">Campsite Number: </label>
                 <input
-                    type="text"
-                    id="title"
-                    value={formData.title}
+                    type="number"
+                    id="campsiteNumber"
+                    value={formData.campsiteNumber}
                     onChange={handleChange}
                 />
-                <label htmlFor="image">Image URL: </label>
+                <br />
+                <label htmlFor="imgUrl">Image URL: </label>
                 <input
-                    type="text"
-                    id="image"
-                    value={formData.image}
+                    type="url"
+                    id="imgUrl"
+                    value={formData.imgUrl}
                     onChange={handleChange}
                 />
-                <label htmlFor="notes">Tasting Notes: </label>
-                <input
-                    type="text"
-                    id="notes"
-                    value={formData.notes}
-                    onChange={handleChange}
-                />
+                <br />
                 <label htmlFor="description">Description: </label>
                 <textarea
                     id="description"
                     value={formData.description}
-                    onChange={handleChange}
-                />
-                <label htmlFor="rating">Rating: </label>
-                <input
-                    type="number"
-                    id="rating"
-                    max="5"
-                    value={formData.rating}
                     onChange={handleChange}
                 />
                 <button type="submit">Submit</button>
