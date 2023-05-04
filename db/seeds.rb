@@ -12,9 +12,12 @@ Campsite.create(site_number:4, description:"If you're looking for a pet friendly
 campers = Camper.all.ids
 campsites = Campsite.all.ids
 
-10.times do 
-    Reservation.create(camper_id:campers.sample, campsite_id:campsites.sample)
-end
+10.times {
+    sd = (Faker::Date.between(from: '2023-05-01', to: '2023-09-30'))
+    ed = sd + rand(1..7)
+    Reservation.create(camper_id:campers.sample, campsite_id:campsites.sample, start_date:sd, end_date:ed)
+}
+
 
 p "seeded"
 
