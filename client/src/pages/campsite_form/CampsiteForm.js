@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 const initialState = {
     site_number: 0,
+    d_site_number: 0,
     img_url: "",
     description: "",
     reservations: []
@@ -9,9 +10,9 @@ const initialState = {
 
 function CampsiteForm({ campsites }) {
     const [formData, setFormData] = useState(initialState);
+    console.log("on page load: ", campsites)
 
     function handleChange(e) {
-       
         setFormData({
             ...formData,
             [e.target.id]: e.target.value,
@@ -19,14 +20,19 @@ function CampsiteForm({ campsites }) {
     }
 
     function handleSubmit(e) {
-        console.log(formData)
         e.preventDefault();
+        const newData = {
+            description: formData.description,
+            img_url: formData.img_url,
+            reservations: [],
+            site_number: formData.site_number
+        }
         fetch("/campsites", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(formData),
+            body: JSON.stringify(newData),
         })
             .then((r) => r.json())
             .then((newSite) => {
@@ -36,9 +42,11 @@ function CampsiteForm({ campsites }) {
     }
 
     function handleDelete (e) {
-        console.log(formData)
         e.preventDefault();
-        console.log(e)
+        const site = campsites.filter(site => site.site_number == formData.d_site_number);
+        console.log("id: ", site.id);
+
+   
         // fetch(`/campsites/${}`, {
         //     method: "DELETE"
         // })
@@ -87,11 +95,11 @@ function CampsiteForm({ campsites }) {
             {/* delete campsite */}
 
             <form onSubmit={handleDelete}>
-                <label htmlFor="site_number">Campsite Number: </label>
+                <label htmlFor="d_site_number">Campsite Number: </label>
                 <input
                     type="number"
-                    id="site_number2"
-                    value={formData.site_number}
+                    id="d_site_number"
+                    value={formData.d_site_number}
                     onChange={handleChange}
                 />
                 <br />
