@@ -12,7 +12,7 @@ class CampersController < ApplicationController
     private
 
     def params_permit 
-        params.permit(:id, :username, :password_digest, :is_admin)
+        params.permit(:id, :username, :password, :password_confirmation, :is_admin)
     end
 
 end

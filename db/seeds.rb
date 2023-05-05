@@ -1,8 +1,8 @@
-Camper.create(username:"firstcamper", password_digest:"cat", is_admin:true)
-Camper.create(username:"secondcamper", password_digest:"cat", is_admin:true)
-Camper.create(username:"thirdcamper", password_digest:"cat", is_admin:false)
-Camper.create(username:"fourthcamper", password_digest:"cat", is_admin:false)
-Camper.create(username:"fifthcamper", password_digest:"cat", is_admin:false)
+Camper.create(username:"firstcamper", password:"cat", is_admin:true)
+Camper.create(username:"secondcamper", password:"cat", is_admin:true)
+Camper.create(username:"thirdcamper", password:"cat", is_admin:false)
+Camper.create(username:"fourthcamper", password:"cat", is_admin:false)
+Camper.create(username:"fifthcamper", password:"cat", is_admin:false)
 
 Campsite.create(site_number:1, description:"This site is a great site for accessing a bathroom", img_url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmHdNfPYFudyZcfEv8-OTNPFNS1RszmrwNjA&usqp=CAU")
 Campsite.create(site_number:2, description:"Gorgeous views! Be sure to book this site", img_url:"https://www.gearo.com/wp-content/uploads/2018/09/campsite_concierge1.png")

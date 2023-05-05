@@ -14,9 +14,11 @@ function Login({ setUser }) {
       body: JSON.stringify({ username, password }),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((user) => console.log(user));
       }
     });
+    setUsername("")
+    setPassword("")
   }
 
   return (
@@ -26,7 +28,7 @@ function Login({ setUser }) {
         <label htmlFor="username">Username</label>
         <input
           type="text"
-          id="username"
+          id="username1"
           autoComplete="off"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -34,7 +36,7 @@ function Login({ setUser }) {
         <label htmlFor="password">Password</label>
         <input
           type="password"
-          id="password"
+          id="password1"
           autoComplete="current-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
