@@ -1,5 +1,5 @@
 class Campsite < ApplicationRecord
-    has_many :reservations
+    has_many :reservations, dependent: :destroy
     has_many :campers
 
     validates :site_number, presence: true
