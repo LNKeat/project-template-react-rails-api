@@ -6,7 +6,11 @@ class CampersController < ApplicationController
 
     def create 
         camper = Camper.create!(params_permit)
+        if camper
         render json: camper, status: :created
+        else
+            render json: {errors: "Error"}
+        end
     end
 
     private

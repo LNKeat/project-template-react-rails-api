@@ -35,10 +35,27 @@ function CampsiteForm({ campsites }) {
             });
     }
 
+    function handleDelete (e) {
+        console.log(formData)
+        e.preventDefault();
+        console.log(e)
+        // fetch(`/campsites/${}`, {
+        //     method: "DELETE"
+        // })
+        //     .then((r) => r.json())
+        //     .then((newSite) => {
+        //         setFormData(initialState);
+        //         console.log(newSite);
+        //     });
+    }
+
     return (
         <div className="card">
-            <h2>New Campsite</h2>
-            <h3>Admin's Only</h3>
+            <h1>Admin's Only</h1>
+            <h3>New Campsite</h3>
+
+            {/* create campsite */}
+
             <form onSubmit={handleSubmit}>
                 <label htmlFor="site_number">Campsite Number: </label>
                 <input
@@ -63,6 +80,22 @@ function CampsiteForm({ campsites }) {
                     onChange={handleChange}
                 />
                 <button type="submit">Submit</button>
+            </form>
+
+            <h3>Delete Campsite</h3>
+
+            {/* delete campsite */}
+
+            <form onSubmit={handleDelete}>
+                <label htmlFor="site_number">Campsite Number: </label>
+                <input
+                    type="number"
+                    id="site_number2"
+                    value={formData.site_number}
+                    onChange={handleChange}
+                />
+                <br />
+                <button type="submit">Delete</button>
             </form>
 
         </div>

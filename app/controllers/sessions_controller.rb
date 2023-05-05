@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
     def create
+      byebug
         camper = Camper.find_by(username: params[:username])
         if camper&.authenticate(params[:password])
             session[:camper_id] = camper.id
