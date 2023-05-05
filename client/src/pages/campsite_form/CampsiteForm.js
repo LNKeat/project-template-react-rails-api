@@ -51,7 +51,8 @@ function CampsiteForm({ campsites, setCampsites }) {
         })
             .then((r) => {
                 setFormData(initialState);
-                console.log(`deleted: ${site_id}`);
+                const updatedCampsites = campsites.filter(site => site.site_number != formData.d_site_number)
+                setCampsites(updatedCampsites)
             });
     }
 
