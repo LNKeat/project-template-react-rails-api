@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  # login
     def create
         camper = Camper.find_by(username: params[:username])
         if camper&.authenticate(params[:password])
@@ -11,7 +12,6 @@ class SessionsController < ApplicationController
 
     def destroy 
       session.delete :camper_id
-      byebug
       head :no_content
     end
 end

@@ -20,8 +20,8 @@ function Header({ camper, setCamper}) {
         ) : (
           <>
             <Home />
-            <Login />
-            <SignUp />
+            <Login setCamper={setCamper} />
+            <SignUp setCamper={setCamper} />
             <Logout />
           </>
         )}

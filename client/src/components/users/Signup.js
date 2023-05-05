@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function SignUp({  }) {
+function SignUp({ setCamper }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -21,7 +21,7 @@ function SignUp({  }) {
       }),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => console.log(user));
+        r.json().then((user) => setCamper(user));
       }
     });
     setUsername("");

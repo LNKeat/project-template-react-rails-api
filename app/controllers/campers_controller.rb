@@ -4,6 +4,7 @@ class CampersController < ApplicationController
         render json: campers
     end
 
+    # sign up
     def create 
         camper = Camper.create!(params_permit)
         if camper

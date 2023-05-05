@@ -10,10 +10,18 @@ function App() {
   const [camper, setCamper] = useState(null)
   const [campsites, setCampsites] = useState([])
 
+
   useEffect(() => {
     fetch("/campsites")
       .then((r) => r.json())
-      .then(setCampsites);
+      .then((data) => {
+        setCampsites(data);
+      })
+      fetch("/me").then((response) => {
+        if (response.ok) {
+          response.json().then((user) => setCamper(user));
+        }
+      });
   }, []);
 
   

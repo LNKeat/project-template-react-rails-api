@@ -1,4 +1,4 @@
-Camper.create(username:"firstcamper", password:"cat", is_admin:true)
+Camper.create(username:"firstcamper", password:"cat", is_admin:false)
 Camper.create(username:"secondcamper", password:"cat", is_admin:true)
 Camper.create(username:"thirdcamper", password:"cat", is_admin:false)
 Camper.create(username:"fourthcamper", password:"cat", is_admin:false)
