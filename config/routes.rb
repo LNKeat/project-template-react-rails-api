@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :reservations
-  resources :campsites, only: [:create, :index, :show]
+  resources :campsites, only: [:create, :index, :show, :destroy]
   resources :campers, only: [:create, :index, :show]
 
   post "/signup", to: "campers#create"

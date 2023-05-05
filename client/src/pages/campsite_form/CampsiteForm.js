@@ -10,8 +10,6 @@ const initialState = {
 
 function CampsiteForm({ campsites }) {
     const [formData, setFormData] = useState(initialState);
-    console.log("on page load: ", campsites)
-
     function handleChange(e) {
         setFormData({
             ...formData,
@@ -43,19 +41,19 @@ function CampsiteForm({ campsites }) {
 
     function handleDelete (e) {
         e.preventDefault();
-        const site = campsites.filter(site => site.site_number == formData.d_site_number);
-        console.log("id: ", site.id);
-        // why can't I access the site id from here? 
-
-   
-        // fetch(`/campsites/${}`, {
-        //     method: "DELETE"
-        // })
-        //     .then((r) => r.json())
-        //     .then((newSite) => {
-        //         setFormData(initialState);
-        //         console.log(newSite);
-        //     });
+        const campsite = campsites.filter(site => site.site_number == formData.d_site_number);
+        const site_id = campsite[0].id
+        fetch(`/campsites/${site_id}`, {
+            method: "DELETE", 
+            headers: {
+                'Content-Type': 'application/json'
+              }
+        })
+            .then((r) => r.json())
+            .then((newSite) => {
+                setFormData(initialState);
+                console.log(`deleted: ${site_id}`);
+            });
     }
 
     return (

@@ -16,7 +16,6 @@ class CampsitesController < ApplicationController
     end
 
     def destroy 
-        byebug
         campsite = Campsite.find_by(params[:campsite_id])
         campsite.destroy
     end
