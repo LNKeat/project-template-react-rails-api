@@ -3,6 +3,6 @@ class Campsite < ApplicationRecord
     has_many :campers
 
     validates :site_number, presence: true
-    validates :description, presence: true, length: { minimum: 30 }
+    validates :description, presence: true, length: { minimum: 25 }
     validates :img_url, presence: true
 end

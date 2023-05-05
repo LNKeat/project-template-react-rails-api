@@ -22,7 +22,7 @@ function App() {
     <div className="App">
       <Header camper={camper} setCamper={setCamper} />
       <Campsites campsites={campsites} />
-      <CampsiteForm campsites={campsites} />
+      <CampsiteForm campsites={campsites} setCampsites={setCampsites} />
      
 
       {/* <BrowserRouter>

@@ -10,13 +10,9 @@ class CampsitesController < ApplicationController
         render json: campsite, status: :created
     end
 
-    def show 
-        campsite = Campsite.find_by(params[:campsite_id])
-        render json: campsite
-    end
 
     def destroy 
-        campsite = Campsite.find_by(params[:campsite_id])
+        campsite = Campsite.find(params[:id])
         campsite.destroy
     end
 

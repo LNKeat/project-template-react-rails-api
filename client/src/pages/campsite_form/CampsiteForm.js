@@ -8,7 +8,7 @@ const initialState = {
     reservations: []
 };
 
-function CampsiteForm({ campsites }) {
+function CampsiteForm({ campsites, setCampsites }) {
     const [formData, setFormData] = useState(initialState);
     function handleChange(e) {
         setFormData({
@@ -25,6 +25,8 @@ function CampsiteForm({ campsites }) {
             reservations: [],
             site_number: formData.site_number
         }
+        
+
         fetch("/campsites", {
             method: "POST",
             headers: {
@@ -35,22 +37,19 @@ function CampsiteForm({ campsites }) {
             .then((r) => r.json())
             .then((newSite) => {
                 setFormData(initialState);
-                console.log(newSite);
+                const updatedCampsites = [...campsites, newSite]
+                setCampsites(updatedCampsites);
             });
     }
 
     function handleDelete (e) {
         e.preventDefault();
         const campsite = campsites.filter(site => site.site_number == formData.d_site_number);
-        const site_id = campsite[0].id
+        const site_id = campsite[0].id       
         fetch(`/campsites/${site_id}`, {
             method: "DELETE", 
-            headers: {
-                'Content-Type': 'application/json'
-              }
         })
-            .then((r) => r.json())
-            .then((newSite) => {
+            .then((r) => {
                 setFormData(initialState);
                 console.log(`deleted: ${site_id}`);
             });
