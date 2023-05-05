@@ -1,5 +1,4 @@
 // import './App.css';
-// import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Header from '../components/header/Header';
 import Campsites from '../components/campsites/Campsites';
@@ -33,17 +32,7 @@ function App() {
       <CampsiteForm campsites={campsites} setCampsites={setCampsites} />
      
 
-      {/* <BrowserRouter>
-      <Switch>
-          <Route path="/">
-            <Home />
-          </Route>
-          <Route path="/campsites">
-           <Campsites campsites={campsites} />
-          </Route>
-        </Switch>
-
-      </BrowserRouter> */}
+  
     </div>
   );
 }
