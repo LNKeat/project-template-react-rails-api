@@ -1,6 +1,7 @@
 import React from "react";
 import Login from "../users/Login";
 import SignUp from "../users/Signup";
+import Logout from "../users/Logout";
 import Home from "../../pages/home/Home";
 
 function Header({ camper, setCamper}) {
@@ -21,6 +22,7 @@ function Header({ camper, setCamper}) {
             <Home />
             <Login />
             <SignUp />
+            <Logout />
           </>
         )}
      

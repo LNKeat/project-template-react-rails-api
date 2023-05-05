@@ -9,7 +9,16 @@ class CampersController < ApplicationController
         if camper
         render json: camper, status: :created
         else
-            render json: {errors: "Error"}
+            render json: {errors: "Not working is working!"}
+        end
+    end
+
+    def show 
+        camper = Camper.find_by(id: session[:camper_id])
+        if camper
+          render json: camper
+        else
+          render json: { error: "Not authorized" }, status: :unauthorized
         end
     end
 

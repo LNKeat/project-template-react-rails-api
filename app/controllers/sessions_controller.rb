@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
     def create
-      byebug
         camper = Camper.find_by(username: params[:username])
         if camper&.authenticate(params[:password])
             session[:camper_id] = camper.id
@@ -8,5 +7,11 @@ class SessionsController < ApplicationController
           else
             render json: { error: "Invalid username or password" }, status: :unauthorized
           end
+    end
+
+    def destroy 
+      session.delete :camper_id
+      byebug
+      head :no_content
     end
 end
