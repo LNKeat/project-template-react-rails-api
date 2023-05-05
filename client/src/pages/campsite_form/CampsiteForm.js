@@ -45,6 +45,7 @@ function CampsiteForm({ campsites }) {
         e.preventDefault();
         const site = campsites.filter(site => site.site_number == formData.d_site_number);
         console.log("id: ", site.id);
+        // why can't I access the site id from here? 
 
    
         // fetch(`/campsites/${}`, {
