@@ -11,6 +11,9 @@
     "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
   },
   "dependencies": {
-    "react-router": "^6.11.1"
+    "localforage": "^1.10.0",
+    "match-sorter": "^6.3.1",
+    "react-router": "^6.11.1",
+    "sort-by": "^0.0.2"
   }
 }

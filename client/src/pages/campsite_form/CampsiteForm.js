@@ -86,6 +86,7 @@ function CampsiteForm({ campsites, setCampsites }) {
                     value={formData.description}
                     onChange={handleChange}
                 />
+                <br />
                 <button type="submit">Submit</button>
             </form>
 
