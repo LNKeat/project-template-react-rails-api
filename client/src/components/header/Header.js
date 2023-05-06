@@ -6,7 +6,7 @@ import Logout from "../users/Logout";
 import Home from "../../pages/home/Home";
 
 function Header({ camper, setCamper }) {
-  console.log(camper: ", camper)
+  console.log("camper: ", camper)
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
@@ -22,23 +22,10 @@ function Header({ camper, setCamper }) {
       ) : (
         <>
           <Home />
-          
-         
           <Login setCamper={setCamper} />
           <SignUp setCamper={setCamper} />
-          <Logout />
-          <nav>
-            <Link to="me">My Profile</Link>
-          </nav>
-
-          {/* <Routes>
-            <Route path=":id" element={<UserProfile />} />
-            <Route path="me" element={<OwnUserProfile />} />
-          </Routes> */}
         </>
       )}
-
-
     </header>
   );
 }

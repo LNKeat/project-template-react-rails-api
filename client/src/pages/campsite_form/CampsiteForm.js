@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 const initialState = {
     site_number: 0,
@@ -9,6 +10,7 @@ const initialState = {
 };
 
 function CampsiteForm({ campsites, setCampsites }) {
+    const navigate = useNavigate()
     const [formData, setFormData] = useState(initialState);
     function handleChange(e) {
         setFormData({
@@ -26,7 +28,6 @@ function CampsiteForm({ campsites, setCampsites }) {
             site_number: formData.site_number
         }
         
-
         fetch("/campsites", {
             method: "POST",
             headers: {
@@ -40,6 +41,8 @@ function CampsiteForm({ campsites, setCampsites }) {
                 const updatedCampsites = [...campsites, newSite]
                 setCampsites(updatedCampsites);
             });
+            navigate("/campsites")
+
     }
 
     function handleDelete (e) {
@@ -54,6 +57,7 @@ function CampsiteForm({ campsites, setCampsites }) {
                 const updatedCampsites = campsites.filter(site => site.site_number != formData.d_site_number)
                 setCampsites(updatedCampsites)
             });
+            navigate("/campsites")
     }
 
     return (
