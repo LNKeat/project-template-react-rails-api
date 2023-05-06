@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Login from "../users/Login";
 import SignUp from "../users/Signup";
-import Logout from "../users/Logout";
-import Home from "../../pages/home/Home";
 
 function Header({ camper, setCamper }) {
   console.log("camper: ", camper)
@@ -17,15 +15,16 @@ function Header({ camper, setCamper }) {
   return (
     <header>
       <h1>Camp Here</h1>
+      <section>
       {camper ? (
         <button onClick={handleLogoutClick}>Logout</button>
       ) : (
-        <>
-          <Home />
+        <div id="wrapper">
           <Login setCamper={setCamper} />
           <SignUp setCamper={setCamper} />
-        </>
+        </div>
       )}
+      </section>
     </header>
   );
 }

@@ -22,9 +22,9 @@ function Login({ setCamper }) {
   }
 
   return (
-    <div>
+    <div style={{width:"200px"}}>
       <form onSubmit={handleSubmit}>
-        <h1>Login</h1>
+        <h4>Login</h4>
         <label htmlFor="username">Username</label>
         <input
           type="text"

@@ -62,6 +62,7 @@ function CampsiteForm({ campsites, setCampsites }) {
 
     return (
         <div className="card">
+            <hr />
             <h1>Admin's Only</h1>
             <h3>New Campsite</h3>
 

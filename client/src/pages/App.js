@@ -7,6 +7,7 @@ import {
   Link,
 } from "react-router-dom";
 import Header from '../components/header/Header';
+import Home from '../pages/home/Home';
 import Campsites from '../components/campsites/Campsites';
 import CampsiteForm from '../pages/campsite_form/CampsiteForm';
 import Campsite from '../components/campsite/Campsite';
@@ -34,9 +35,10 @@ function App() {
 
   return (
     <div className="App">
+      <Header camper={camper} setCamper={setCamper} />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Header camper={camper} setCamper={setCamper} />} />
+          <Route path="/" element={<Home camper={camper} />} />
           <Route path="/campsites" element={<Campsites campsites={campsites} />} />
           <Route path="/campsite-form" element={<CampsiteForm campsites={campsites} setCampsites={setCampsites} />} />
         </Routes>

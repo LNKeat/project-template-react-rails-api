@@ -30,9 +30,9 @@ function SignUp({ setCamper }) {
   }
 
   return (
-    <div>
+    <div style={{width:"200px"}}>
       <form onSubmit={handleSubmit}>
-        <h1>Sign Up</h1>
+        <h4>Sign Up</h4>
         <label htmlFor="username">Username</label>
         <input
           type="text"
