@@ -1,4 +1,4 @@
-// import './App.css';
+import './App.css';
 import { useState, useEffect } from 'react';
 import {
   BrowserRouter,
@@ -8,10 +8,7 @@ import {
 } from "react-router-dom";
 import Header from '../components/header/Header';
 import Home from '../pages/home/Home';
-import Campsites from '../components/campsites/Campsites';
 import AdminForm from './adminForm/AdminForm';
-import Campsite from '../components/campsite/Campsite';
-
 
 function App() {
   const [camper, setCamper] = useState(null)
@@ -38,8 +35,7 @@ function App() {
       <Header camper={camper} setCamper={setCamper} />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home camper={camper} />} />
-          <Route path="/campsites" element={<Campsites campsites={campsites} />} />
+          <Route path="/" element={<Home camper={camper} campsites={campsites} />} />
           <Route path="/admin-form" element={<AdminForm campsites={campsites} setCampsites={setCampsites} />} />
         </Routes>
       </BrowserRouter>

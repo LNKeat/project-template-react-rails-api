@@ -4,7 +4,6 @@ import Login from "../users/Login";
 import SignUp from "../users/Signup";
 
 function Header({ camper, setCamper }) {
-  console.log("camper: ", camper)
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
@@ -13,15 +12,19 @@ function Header({ camper, setCamper }) {
     })
   }
   return (
-    <header>
-      <h1>Camp Here</h1>
+    <header id="header">
+      <h1 style={{textAlign:"center"}}>Camp Here</h1>
       <section>
       {camper ? (
         <button onClick={handleLogoutClick}>Logout</button>
       ) : (
         <div id="wrapper">
+          <div class="column">
           <Login setCamper={setCamper} />
+          </div>
+          <div class="column">
           <SignUp setCamper={setCamper} />
+          </div>
         </div>
       )}
       </section>

@@ -1,25 +1,20 @@
-import React from 'react'
+import React from 'react';
+import Campsites from '../../components/campsites/Campsites';
 
-function Home({ camper }) {
+function Home({ camper, campsites }) {
   return (
-    <>
-    put this into a fxn
-    {/* {
-    if (camper) {
-      <p>Is camper</p>
-    } else {
-      <p>No  camper</p>
-    }
-    } */}
-
-
+    <div id="home">
       {
-      !camper ? <h4>Please log in or sign up</h4> : 
-      <h4>Welcome !</h4>
-      // <p>TEST</p>
+        !camper ? <h1>Please log in or sign up</h1> :
+          <div>
+            <h1>Welcome {camper.username}!</h1>
+            <div className="campsites-wrapper">
+              <Campsites campsites={campsites} />
+            </div>
+          </div>
       }
 
-    </>
+    </div>
   )
 }
 

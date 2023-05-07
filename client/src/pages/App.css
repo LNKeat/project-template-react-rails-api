@@ -1,41 +1,31 @@
 
+#header {
+  background-color:antiquewhite;
+  height: 400px;
+  padding: 20px;
+  margin: 20px;
+  border: 0px;
+}
 
-.App {
+#home {
+  padding: 0px;
+  margin: 20px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.campsites-wrapper { 
+  width: 100%;
+  border-color: antiquewhite;
+  border: 20px
+}
+
+.site-wrapper {
+  border: 20px;
+  border-color: antiquewhite;
 }
 
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.column {
+  float: left;
+  width: 50%;
 }
