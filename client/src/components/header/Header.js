@@ -19,10 +19,10 @@ function Header({ camper, setCamper }) {
         <button onClick={handleLogoutClick}>Logout</button>
       ) : (
         <div id="wrapper">
-          <div class="column">
+          <div className="column">
           <Login setCamper={setCamper} />
           </div>
-          <div class="column">
+          <div className="column">
           <SignUp setCamper={setCamper} />
           </div>
         </div>

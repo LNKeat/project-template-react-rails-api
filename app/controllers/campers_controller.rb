@@ -8,7 +8,8 @@ class CampersController < ApplicationController
     def create 
         camper = Camper.create!(params_permit)
         if camper
-        render json: camper, status: :created
+            session[:camper_id] = camper.id
+            render json: camper, status: :created
         else
             render json: {errors: "Not working is working!"}
         end

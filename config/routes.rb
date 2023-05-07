@@ -9,6 +9,4 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   post "/admin-form", to: "admin_form#create"
   delete "/admin-form", to: "admin_form#destroy"
-  
-
 end

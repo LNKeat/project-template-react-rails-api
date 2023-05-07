@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
 const initialState = {
@@ -12,12 +12,14 @@ const initialState = {
 function AdminForm({ campsites, setCampsites }) {
     const navigate = useNavigate()
     const [formData, setFormData] = useState(initialState);
+
     function handleChange(e) {
         setFormData({
             ...formData,
             [e.target.id]: e.target.value,
         });
     }
+    
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -64,6 +66,7 @@ function AdminForm({ campsites, setCampsites }) {
         <div className="card">
             <hr />
             <h1>Admin's Only</h1>
+            <a href="/">Return to campsites</a>
             <h3>New Campsite</h3>
 
             {/* create campsite */}
