@@ -9,7 +9,7 @@ const initialState = {
     reservations: []
 };
 
-function CampsiteForm({ campsites, setCampsites }) {
+function AdminForm({ campsites, setCampsites }) {
     const navigate = useNavigate()
     const [formData, setFormData] = useState(initialState);
     function handleChange(e) {
@@ -28,7 +28,7 @@ function CampsiteForm({ campsites, setCampsites }) {
             site_number: formData.site_number
         }
         
-        fetch("/campsites", {
+        fetch("/admin-form", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -115,4 +115,4 @@ function CampsiteForm({ campsites, setCampsites }) {
     )
 }
 
-export default CampsiteForm
+export default AdminForm

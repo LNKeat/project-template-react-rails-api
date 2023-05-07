@@ -9,7 +9,7 @@ import {
 import Header from '../components/header/Header';
 import Home from '../pages/home/Home';
 import Campsites from '../components/campsites/Campsites';
-import CampsiteForm from '../pages/campsite_form/CampsiteForm';
+import AdminForm from './adminForm/AdminForm';
 import Campsite from '../components/campsite/Campsite';
 
 
@@ -40,12 +40,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home camper={camper} />} />
           <Route path="/campsites" element={<Campsites campsites={campsites} />} />
-          <Route path="/campsite-form" element={<CampsiteForm campsites={campsites} setCampsites={setCampsites} />} />
+          <Route path="/admin-form" element={<AdminForm campsites={campsites} setCampsites={setCampsites} />} />
         </Routes>
       </BrowserRouter>
-      {/* <Header camper={camper} setCamper={setCamper} />
-      <Campsites campsites={campsites} />
-      <CampsiteForm campsites={campsites} setCampsites={setCampsites} /> */}
+      
 
 
 
