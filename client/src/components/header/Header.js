@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Login from "../users/Login";
 import SignUp from "../users/Signup";
 
 function Header({ camper, setCamper }) {
+
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {

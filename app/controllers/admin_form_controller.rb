@@ -1,4 +1,5 @@
 class AdminFormController < ApplicationController
+    
 
     def create 
         campsite = Campsite.create!(params_permit)

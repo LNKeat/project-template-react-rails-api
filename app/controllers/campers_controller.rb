@@ -7,21 +7,13 @@ class CampersController < ApplicationController
     # sign up
     def create 
         camper = Camper.create!(params_permit)
-        if camper
             session[:camper_id] = camper.id
             render json: camper, status: :created
-        else
-            render json: {errors: "Not working is working!"}
-        end
     end
 
     def show 
         camper = Camper.find_by(id: session[:camper_id])
-        if camper
           render json: camper
-        else
-          render json: { error: "Not authorized" }, status: :unauthorized
-        end
     end
 
     private

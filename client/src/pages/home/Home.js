@@ -9,7 +9,7 @@ function Home({ camper, campsites }) {
         !camper ? <h1>Please log in or sign up</h1> :
           <div>
             <h1>Welcome {camper.username}!</h1>
-            {camper.is_admin ? <a href="/admin-form">Add or delete a campsite</a> : console.log("is not admin")}
+            {camper.is_admin ? <a href="/admin-form">Add or delete a campsite</a> : <></>}
             
             <div className="campsites-wrapper">
               <Campsites campsites={campsites} />

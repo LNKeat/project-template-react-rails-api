@@ -4,7 +4,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Link,
+  Link
 } from "react-router-dom";
 import Header from '../components/header/Header';
 import Home from '../pages/home/Home';
@@ -36,7 +36,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home camper={camper} campsites={campsites} />} />
-          <Route path="/admin-form" element={<AdminForm campsites={campsites} setCampsites={setCampsites} />} />
+          <Route path="/admin-form" element={<AdminForm campsites={campsites} setCampsites={setCampsites} camper={camper} />} />
         </Routes>
       </BrowserRouter>
       
