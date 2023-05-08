@@ -12,7 +12,15 @@ const initialState = {
 function AdminForm({ campsites, setCampsites, camper }) {
     const navigate = useNavigate()
     const [formData, setFormData] = useState(initialState);
-    // const [isAdmin, setIsAdmin] = useState(false)
+  
+    useEffect(() => {
+    fetch("/admin-form")
+      .then((r) => r.json())
+      .then((data) => {
+        console.log(data);
+      })
+    }, [])
+    
 
     function handleChange(e) {
         setFormData({

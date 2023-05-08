@@ -22,7 +22,7 @@ function App() {
         setCampsites(data);
       })
     fetch("/me").then((response) => {
-      if (response.ok) {
+      if (response <= 300) {
         response.json().then((user) => setCamper(user));
       }
     });

@@ -15,6 +15,8 @@ function Login({ setCamper }) {
     }).then((r) => {
       if (r.ok) {
         r.json().then((user) => setCamper(user));
+      } else {
+        r.json().then((details) => alert(details.errors))
       }
     });
     setUsername("")
