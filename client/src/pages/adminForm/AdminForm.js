@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 function AdminForm({ campsites, setCampsites, camper }) {
     const navigate = useNavigate()
     const [formData, setFormData] = useState({});
+    const [errors, setErrors] = useState([])
   
     useEffect(() => {
     fetch("/admin-form")

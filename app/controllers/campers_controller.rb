@@ -6,7 +6,7 @@ class CampersController < ApplicationController
 
     # sign up
     def create 
-        camper = Camper.create!(params_permit)
+        # camper = Camper.create!(params_permit)
         # if camper
         #     session[:camper_id] = camper.id
         #     render json: camper, status: :created

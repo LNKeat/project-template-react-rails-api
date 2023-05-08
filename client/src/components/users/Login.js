@@ -16,11 +16,12 @@ function Login({ setCamper }) {
     }).then((r) => {
       if (r.ok) {
         r.json().then((user) => setCamper(user));
-        setUsername("")
+        
         setErrors([])
       } else {
         r.json().then((details) => setErrors(details.errors))
       }
+      setUsername("")
       setPassword("")
     });
   
