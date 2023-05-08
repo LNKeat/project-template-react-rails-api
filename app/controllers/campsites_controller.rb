@@ -5,17 +5,6 @@ class CampsitesController < ApplicationController
         render json: campsites
     end
 
-    # def create 
-    #     campsite = Campsite.create!(params_permit)
-    #     render json: campsite, status: :created
-    # end
-
-
-    # def destroy 
-    #     campsite = Campsite.find(params[:id])
-    #     campsite.destroy
-    # end
-
     private
 
     def params_permit

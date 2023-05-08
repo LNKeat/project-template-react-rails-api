@@ -3,6 +3,7 @@ import React, { useState } from "react";
 function Login({ setCamper }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState([]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -15,12 +16,14 @@ function Login({ setCamper }) {
     }).then((r) => {
       if (r.ok) {
         r.json().then((user) => setCamper(user));
+        setUsername("")
+        setErrors([])
       } else {
-        r.json().then((details) => alert(details.errors))
+        r.json().then((details) => setErrors(details.errors))
       }
+      setPassword("")
     });
-    setUsername("")
-    setPassword("")
+  
   }
 
   return (
@@ -45,6 +48,11 @@ function Login({ setCamper }) {
         />
         <button type="submit">Login</button>
       </form>
+      <ul>
+        {errors.map((error, ind) => (
+          <li key={ind}>{error}</li>
+        ) )}
+      </ul>
     </div>
   );
 }

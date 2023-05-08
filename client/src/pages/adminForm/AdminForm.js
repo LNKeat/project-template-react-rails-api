@@ -1,23 +1,15 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
-const initialState = {
-    site_number: 0,
-    d_site_number: 0,
-    img_url: "",
-    description: "",
-    reservations: []
-};
-
 function AdminForm({ campsites, setCampsites, camper }) {
     const navigate = useNavigate()
-    const [formData, setFormData] = useState(initialState);
+    const [formData, setFormData] = useState({});
   
     useEffect(() => {
     fetch("/admin-form")
       .then((r) => r.json())
       .then((data) => {
-        console.log(data);
+        setFormData(data);
       })
     }, [])
     
@@ -47,7 +39,7 @@ function AdminForm({ campsites, setCampsites, camper }) {
         })
             .then((r) => r.json())
             .then((newSite) => {
-                setFormData(initialState);
+         
                 const updatedCampsites = [...campsites, newSite]
                 setCampsites(updatedCampsites);
                 navigate("/")
@@ -59,11 +51,11 @@ function AdminForm({ campsites, setCampsites, camper }) {
         e.preventDefault();
         const campsite = campsites.filter(site => site.site_number == formData.d_site_number);
         const site_id = campsite[0].id
-        fetch(`/campsites/${site_id}`, {
+        fetch(`/admin-form/${site_id}`, {
             method: "DELETE",
         })
             .then((r) => {
-                setFormData(initialState);
+                console.log(r)
                 const updatedCampsites = campsites.filter(site => site.site_number != formData.d_site_number)
                 setCampsites(updatedCampsites)
             });

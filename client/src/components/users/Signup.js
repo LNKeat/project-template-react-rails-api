@@ -5,6 +5,8 @@ function SignUp({ setCamper }) {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
+  const [reservations, setReservations] = useState([])
+  const [errors, setErrors] = useState([])
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -17,16 +19,20 @@ function SignUp({ setCamper }) {
         username,
         password,
         password_confirmation: passwordConfirmation,
-        is_admin: isAdmin
+        is_admin: isAdmin,
+        reservations
       }),
     }).then((r) => {
       if (r.ok) {
         r.json().then((user) => setCamper(user));
+        setUsername("");
+      } else {
+        r.json().then((details) => setErrors(details.errors))
       }
+      setPassword("");
+      setPasswordConfirmation("")
     });
-    setUsername("");
-    setPassword("");
-    setPasswordConfirmation("")
+    
   }
 
   return (
@@ -59,6 +65,11 @@ function SignUp({ setCamper }) {
         />
         <button type="submit">Sign Up</button>
       </form>
+      <ul>
+        {errors.map((error, ind) => (
+          <li key={ind}>{error}</li>
+        ) )}
+      </ul>
     </div>
   );
 }

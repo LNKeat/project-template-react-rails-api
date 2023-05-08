@@ -1,6 +1,8 @@
 class AdminFormController < ApplicationController
-        before_action: :authorize
-    
+        before_action :authorize
+     # To do: create & destroy actions are not being called on the server side
+
+
     def index
         render json: {
             site_number: 0,
@@ -8,7 +10,7 @@ class AdminFormController < ApplicationController
             img_url: "",
             description: "",
             reservations: []
-        };
+        }
     end
 
     def create 
@@ -17,9 +19,11 @@ class AdminFormController < ApplicationController
     end
 
     def destroy 
+        byebug
         campsite = Campsite.find(params[:id])
         campsite.destroy
     end
+
 
     private
 
