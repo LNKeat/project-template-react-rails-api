@@ -19,7 +19,6 @@ class AdminFormController < ApplicationController
     end
 
     def destroy 
-        byebug
         campsite = Campsite.find(params[:id])
         campsite.destroy
     end

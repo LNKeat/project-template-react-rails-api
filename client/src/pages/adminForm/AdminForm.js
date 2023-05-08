@@ -53,9 +53,8 @@ function AdminForm({ campsites, setCampsites, camper }) {
 
     function handleDelete(e) {
         e.preventDefault();
-        const campsite = campsites.filter(site => site.site_number == formData.d_site_number);
-        const site_id = campsite[0].id
-        fetch(`/admin-form/${site_id}`, {
+        const campsite = campsites.find(site => site.site_number == formData.d_site_number);
+        fetch(`/admin-form/${campsite.id}`, {
             method: "DELETE",
         })
             .then((r) => {
