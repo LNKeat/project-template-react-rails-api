@@ -31,21 +31,19 @@ function AdminForm({ campsites, setCampsites, camper }) {
             site_number: formData.site_number
         }
 
-        fetch("/admin-form", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newData),
-        })
-            .then((r) => r.json())
-            .then((newSite) => {
-         
-                const updatedCampsites = [...campsites, newSite]
-                setCampsites(updatedCampsites);
-                navigate("/")
-            });
-
+       fetch("/admin-form", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newData),
+    })
+        .then((r) => r.json())
+        .then((newSite) => {
+            const updatedCampsites = [...campsites, newSite]
+            setCampsites(updatedCampsites);
+            navigate("/")
+        });
     }
 
     function handleDelete(e) {
