@@ -5,15 +5,15 @@ function AdminForm({ campsites, setCampsites, camper }) {
     const navigate = useNavigate()
     const [formData, setFormData] = useState({});
     const [errors, setErrors] = useState([])
-  
+
     useEffect(() => {
-    fetch("/admin-form")
-      .then((r) => r.json())
-      .then((data) => {
-        setFormData(data);
-      })
+        fetch("/admin-form")
+            .then((r) => r.json())
+            .then((data) => {
+                setFormData(data);
+            })
     }, [])
-    
+
 
     function handleChange(e) {
         setFormData({
@@ -31,19 +31,24 @@ function AdminForm({ campsites, setCampsites, camper }) {
             site_number: formData.site_number
         }
 
-       fetch("/admin-form", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newData),
-    })
-        .then((r) => r.json())
-        .then((newSite) => {
-            const updatedCampsites = [...campsites, newSite]
-            setCampsites(updatedCampsites);
-            navigate("/")
-        });
+        fetch("/admin-form", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newData),
+        })
+            .then((r) => {
+                if (r.ok) {
+                    r.json().then((newSite) => {
+                        const updatedCampsites = [...campsites, newSite]
+                        setCampsites(updatedCampsites);
+                        navigate("/")
+                    });
+                } else {
+                    r.json().then((details) => setErrors(details.errors))
+                }
+            })
     }
 
     function handleDelete(e) {
@@ -63,64 +68,69 @@ function AdminForm({ campsites, setCampsites, camper }) {
 
     return (
         <div className="card">
-            {!camper ? 
-            <div>
-                <h2>Not authorized</h2>
-                <a href="/">View campsites</a>
-                </div> : (
+            {!camper ?
                 <div>
-                    <hr />
-                    <h1>Admin's Only</h1>
+                    <h2>Not authorized</h2>
                     <a href="/">View campsites</a>
-                    {camper.is_admin ? (<div>
-                    <h3>New Campsite</h3>
+                </div> : (
+                    <div>
+                        <hr />
+                        <h1>Admin's Only</h1>
+                        <a href="/">View campsites</a>
+                        {camper.is_admin ? (<div>
+                            <h3>New Campsite</h3>
 
-                    {/* create campsite */}
+                            {/* create campsite */}
 
-                    <form onSubmit={handleSubmit}>
-                        <label htmlFor="site_number">Campsite Number: </label>
-                        <input
-                            type="number"
-                            id="site_number"
-                            value={formData.site_number}
-                            onChange={handleChange}
-                        />
-                        <br />
-                        <label htmlFor="img_url">Image URL: </label>
-                        <input
-                            type="url"
-                            id="img_url"
-                            value={formData.img_url}
-                            onChange={handleChange}
-                        />
-                        <br />
-                        <label htmlFor="description">Description: </label>
-                        <textarea
-                            id="description"
-                            value={formData.description}
-                            onChange={handleChange}
-                        />
-                        <br />
-                        <button type="submit">Submit</button>
-                    </form>
+                            <form onSubmit={handleSubmit}>
+                                <label htmlFor="site_number">Campsite Number: </label>
+                                <input
+                                    type="number"
+                                    id="site_number"
+                                    value={formData.site_number}
+                                    onChange={handleChange}
+                                />
+                                <br />
+                                <label htmlFor="img_url">Image URL: </label>
+                                <input
+                                    type="url"
+                                    id="img_url"
+                                    value={formData.img_url}
+                                    onChange={handleChange}
+                                />
+                                <br />
+                                <label htmlFor="description">Description: </label>
+                                <textarea
+                                    id="description"
+                                    value={formData.description}
+                                    onChange={handleChange}
+                                />
+                                <br />
+                                <button type="submit">Submit</button>
+                            </form>
+                            <ul>
+                                {errors.map((error, ind) => (
+                                    <li key={ind}>{error}</li>
+                                ))}
+                            </ul>
 
-                    <h3>Delete Campsite</h3>
+                            <h3>Delete Campsite</h3>
 
-                    {/* delete campsite */}
+                            {/* delete campsite */}
 
-                    <form onSubmit={handleDelete}>
-                        <label htmlFor="d_site_number">Campsite Number: </label>
-                        <input
-                            type="number"
-                            id="d_site_number"
-                            value={formData.d_site_number}
-                            onChange={handleChange}
-                        />
-                        <br />
-                        <button type="submit">Delete</button>
-                    </form>
-                    </div>): <></>}
-                </div>)}
+                            <form onSubmit={handleDelete}>
+                                <label htmlFor="d_site_number">Campsite Number: </label>
+                                <input
+                                    type="number"
+                                    id="d_site_number"
+                                    value={formData.d_site_number}
+                                    onChange={handleChange}
+                                />
+                                <br />
+                                <button type="submit">Delete</button>
+                            </form>
+                        </div>) : <></>}
+                    </div>)}
         </div>
     )
 }
