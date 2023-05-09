@@ -13,6 +13,7 @@ import AdminForm from './adminForm/AdminForm';
 import MyReservations from './myReservations/MyReservations';
 
 export const CamperContext = React.createContext();
+export const CampsitesContext = React.createContext();
 
 function App() {
   const [camper, setCamper] = useState(null)
@@ -38,13 +39,15 @@ function App() {
     <div className="App"> 
       <BrowserRouter>
       <CamperContext.Provider value={camper}>
+      <CampsitesContext.Provider value={campsites}>
       <Header camper={camper} setCamper={setCamper} />
         <Routes>
           <Route path="/" element={<Home campsites={campsites} />} />
           <Route path="/admin-form" element={<AdminForm campsites={campsites} setCampsites={setCampsites} />} />
           <Route path="/my-reservations" element={<MyReservations campsites={campsites} />} />
         </Routes>
-        </CamperContext.Provider>
+        </CampsitesContext.Provider>
+        </CamperContext.Provider> 
       </BrowserRouter>
       
 

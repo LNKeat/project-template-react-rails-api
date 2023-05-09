@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Campsite from '../campsite/Campsite';
+import { CampsitesContext } from '../../pages/App';
 
-function Campsites({ campsites }) {
+function Campsites() {
+  const campsites = useContext(CampsitesContext)
   return (
     <div>
       <hr />
