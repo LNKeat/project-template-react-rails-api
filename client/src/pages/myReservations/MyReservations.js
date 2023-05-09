@@ -1,11 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { CamperContext, CampsitesContext } from '../App';
+import UpdateResForm from '../../components/updateReservation/UpdateResForm';
 
 function MyReservations() {
   const camper = useContext(CamperContext)
   const campsites = useContext(CampsitesContext)
   const [username, setUsername] = useState("")
   const [camperReservations, setCamperReservations] = useState([])
+  const [showRes, setShowRes] = useState(false)
+  const [reservation, setReservation] = useState({})
 
   useEffect(() => {
     setCamperReservations(camper?.reservations || [])
@@ -16,14 +19,17 @@ function MyReservations() {
     return campsite?.site_number
   }
 
+  function handleUpdateClick(res){
+    setShowRes(true)
+    setReservation(res)
+  }
+
   function handleDeleteClick(res){
-    console.log("reservation: ", res, "campsites: ", campsites)
     fetch(`/reservations/${res.id}`, { 
       method: "DELETE" 
     }).then((r) => {
       if (r.ok) {
         const updatedReservations = camper.reservations.filter((r) => r.id !== res.id)
-        console.log(updatedReservations)
         setCamperReservations(updatedReservations)
 
       }
@@ -32,15 +38,17 @@ function MyReservations() {
 
   return (
     <div>
-      {console.log("camper: ", camper)}
       {camper && <>
-          <h2>Username: {camper.username}</h2>
+        <h2>Username: {camper.username}</h2>
+        {/* shows reservation to be updated */}
+        {showRes && <UpdateResForm reservation={reservation} setShowRes={setShowRes} />}
+        <hr />
+      {/* list of camper's reservations */}
           <ul>
             {camperReservations.map((res) => (
-              <li key={res.id}>Campsite: {find_site_number(res)} , Dates: {res.start_date} - {res.end_date}
+              <li key={res.id} style={{padding:"15px"}}>Campsite: {find_site_number(res)} , Dates: {res.start_date} - {res.end_date}
               <br />
-              <a href=''>Update Reservation</a>
-              <br />
+              <button onClick={() => handleUpdateClick(res)}>Update Reservation</button>
               <button onClick={() => handleDeleteClick(res)}>Delete Reservation</button>
               </li>
             ))}
