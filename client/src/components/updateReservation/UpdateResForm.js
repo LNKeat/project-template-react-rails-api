@@ -2,11 +2,12 @@ import React, { useState, useContext } from 'react';
 import { CamperContext } from '../../pages/App';
 
 function UpdateResForm({ reservation, setReservation, setShowRes }) {
+    // TO DO: catch & display errors from PUT request for updated reservation
+
     const camper = useContext(CamperContext)
     const [startDate, setStartDate] = useState(reservation.start_date)
     const [endDate, setEndDate] = useState(reservation.end_date)
-
-    camper && console.log(camper)
+    const [errors, setErrors] = useState([])
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -18,8 +19,18 @@ function UpdateResForm({ reservation, setReservation, setShowRes }) {
             method: "PATCH",
             headers: { "Content-Type": "application/json"},
             body: JSON.stringify(updatedRes)
-        }).then ((response) => response.json())
-        .then((data => setReservation(data)))
+        }).then((r) => {
+            if (r.ok){
+                r.json()
+                .then((data) => {
+                    setReservation(data)
+                    setShowRes(false)
+                })
+            } else {
+                r.json()
+                .then((details) => setErrors(details.errors))
+            }
+        })   
     }
 
     return (
@@ -42,6 +53,12 @@ function UpdateResForm({ reservation, setReservation, setShowRes }) {
                 </label>
                 <button type="submit">Update Dates</button>
             </form>
+            <ul style={{color:"red"}}>
+                {errors.map((error, ind) => (
+                    <li key={ind}>{error}</li>
+                ))}
+            </ul>
+
 
             <br />
             <button onClick={() => setShowRes(false)}>Hide reservation</button>

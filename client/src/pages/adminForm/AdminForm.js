@@ -116,7 +116,7 @@ function AdminForm({ campsites, setCampsites }) {
                                 <br />
                                 <button type="submit">Submit</button>
                             </form>
-                            <ul>
+                            <ul style={{color:"red"}}>
                                 {errors.map((error, ind) => (
                                     <li key={ind}>{error}</li>
                                 ))}

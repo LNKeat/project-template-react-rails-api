@@ -65,7 +65,7 @@ function SignUp({ setCamper }) {
         />
         <button type="submit">Sign Up</button>
       </form>
-      <ul>
+      <ul style={{color:"red"}}>
         {errors.map((error, ind) => (
           <li key={ind}>{error}</li>
         ) )}
