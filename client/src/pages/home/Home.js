@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Campsites from '../../components/campsites/Campsites';
+import { CamperContext } from '../App';
 
-function Home({ camper, campsites }) {
+function Home({ campsites }) {
+  const camper = useContext(CamperContext)
+  console.log(camper)
   return (
     <div id="home">
 

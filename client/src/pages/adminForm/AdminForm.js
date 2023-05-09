@@ -1,9 +1,18 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+import { CamperContext } from '../App';
 
-function AdminForm({ campsites, setCampsites, camper }) {
+
+function AdminForm({ campsites, setCampsites }) {
+    const camper = useContext(CamperContext)
     const navigate = useNavigate()
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({
+        description: "formData.description",
+        img_url: "formData.img_url",
+        reservations: [],
+        site_number: 0, 
+        d_site_number: 0
+    });
     const [errors, setErrors] = useState([])
    
     useEffect(() => {
