@@ -11,6 +11,12 @@ class ReservationsController < ApplicationController
         render json: reservation, serializer: CamperUsernameSerializer
     end
 
+    def update
+        reservation = find_res
+        reservation.update!(params_permit)
+        render json: reservation, status: 200
+    end
+
     def create 
         res = Reservation.create!(params_permit)
         render json: res, status: :created
@@ -30,7 +36,7 @@ class ReservationsController < ApplicationController
     end
 
     def params_permit
-        params.permit(:id, :camper_id, :campsite_id)
+        params.permit(:id, :camper_id, :campsite_id, :start_date, :end_date)
     end
 
     def render_not_found_response

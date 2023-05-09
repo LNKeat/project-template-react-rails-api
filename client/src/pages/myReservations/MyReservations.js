@@ -41,7 +41,7 @@ function MyReservations() {
       {camper && <>
         <h2>Username: {camper.username}</h2>
         {/* shows reservation to be updated */}
-        {showRes && <UpdateResForm reservation={reservation} setShowRes={setShowRes} />}
+        {showRes && <UpdateResForm reservation={reservation} setReservation={setReservation} setShowRes={setShowRes} />}
         <hr />
       {/* list of camper's reservations */}
           <ul>
