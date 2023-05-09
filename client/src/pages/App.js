@@ -14,7 +14,6 @@ function App() {
   const [camper, setCamper] = useState(null)
   const [campsites, setCampsites] = useState([])
 
-
   useEffect(() => {
     fetch("/campsites")
       .then((r) => r.json())
@@ -30,10 +29,11 @@ function App() {
 
 
 
+
   return (
-    <div className="App">
-      <Header camper={camper} setCamper={setCamper} />
+    <div className="App"> 
       <BrowserRouter>
+      <Header camper={camper} setCamper={setCamper} />
         <Routes>
           <Route path="/" element={<Home camper={camper} campsites={campsites} />} />
           <Route path="/admin-form" element={<AdminForm campsites={campsites} setCampsites={setCampsites} camper={camper} />} />

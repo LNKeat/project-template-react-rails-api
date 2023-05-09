@@ -4,8 +4,9 @@ class AdminFormController < ApplicationController
 
 
     def index
+        next_site_num = Campsite.last.site_number + 1
         render json: {
-            site_number: 0,
+            site_number: next_site_num,
             d_site_number: 0,
             img_url: "",
             description: "",
