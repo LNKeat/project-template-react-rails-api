@@ -22,6 +22,7 @@ class AdminFormController < ApplicationController
     def destroy 
         campsite = Campsite.find(params[:id])
         campsite.destroy
+     
     end
 
 

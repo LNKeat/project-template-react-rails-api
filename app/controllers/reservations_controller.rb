@@ -16,6 +16,12 @@ class ReservationsController < ApplicationController
         render json: res, status: :created
     end
 
+    def destroy 
+        reservation = find_res
+        reservation.delete
+        head :no_content
+    end
+
 
     private
 
