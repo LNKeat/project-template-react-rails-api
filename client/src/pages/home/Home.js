@@ -4,7 +4,6 @@ import { CamperContext } from '../App';
 
 function Home({ campsites }) {
   const camper = useContext(CamperContext)
-  console.log(camper)
   return (
     <div id="home">
 

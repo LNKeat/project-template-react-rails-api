@@ -1,20 +1,29 @@
 import React, { useState, useContext } from 'react'
 import { CamperContext } from '../App'
 
-function MyReservations() {
+function MyReservations({ campsites }) {
   const [username, setUsername] = useState("")
   const camper = useContext(CamperContext)
-  console.log(camper)
+  camper && console.log(camper.reservations)
+  console.log("campsites: ", campsites)
+
+  function find_site_number(res){
+    const campsite = campsites.find((site) => site.id === res.campsite_id)
+    return campsite.site_number
+  }
     
     
 
   return (
     <div>
-        <h1>This is me:</h1>
-        <br />
-        <ul>
-          <li>{camper?.username}</li>
-        </ul>
+      {camper && <>
+          <h2>Username: {camper.username}</h2>
+          <ul>
+            {camper.reservations.map((res) => (
+              <li key={res.id}>Campsite: {find_site_number(res)}, Dates: {res.start_date} - {res.end_date}</li>
+            ))}
+          </ul>
+    </>}
     </div>
   )
 }

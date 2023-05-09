@@ -42,7 +42,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home campsites={campsites} />} />
           <Route path="/admin-form" element={<AdminForm campsites={campsites} setCampsites={setCampsites} />} />
-          <Route path="/my-reservations" element={<MyReservations />} />
+          <Route path="/my-reservations" element={<MyReservations campsites={campsites} />} />
         </Routes>
         </CamperContext.Provider>
       </BrowserRouter>
