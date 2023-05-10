@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { CamperContext } from '../App';
 
@@ -11,8 +11,8 @@ function AdminForm({ campsites, setCampsites }) {
         img_url: "formData.img_url",
         reservations: [],
         site_number: 0,
-        d_site_number: 0
     });
+    const [deleteSite, setDeleteSite] = useState(1)
     const [errors, setErrors] = useState([])
 
     useEffect(() => {
@@ -59,16 +59,15 @@ function AdminForm({ campsites, setCampsites }) {
                 }
             })
     }
-
     function handleDelete(e) {
         e.preventDefault();
-        const campsite = campsites.find(site => site.site_number == formData.d_site_number);
+        const campsite = campsites.find((site) => site.site_number == deleteSite);
+        console.log("id: ", campsite)
         fetch(`/admin-form/${campsite.id}`, {
             method: "DELETE",
         })
             .then((r) => {
-                console.log(r)
-                const updatedCampsites = campsites.filter(site => site.site_number != formData.d_site_number)
+                const updatedCampsites = campsites.filter(site => site.site_number != deleteSite)
                 setCampsites(updatedCampsites)
             });
         navigate("/")
@@ -127,19 +126,13 @@ function AdminForm({ campsites, setCampsites }) {
                             {/* delete campsite */}
 
                             <form onSubmit={handleDelete}>
-                                <select>
+                                <select onChange={(e) => setDeleteSite(e.target.value)
+                                }>
                                     {campsites.map((site) => (
-                                        <option value={formData.d_site_number}>{site.site_number}</option>
+                                        <option key={site.id} id={site.site_number} value={site.site_number}>{site.site_number}</option>
                                     ))}
-                                    
                                 </select>
-                                {/* <label htmlFor="d_site_number">Campsite Number: </label>
-                                <input
-                                    type="number"
-                                    id="d_site_number"
-                                    value={formData.d_site_number}
-                                    onChange={handleChange}
-                                /> */}
+                                
                                 <br />
                                 <button type="submit">Delete</button>
                             </form>
