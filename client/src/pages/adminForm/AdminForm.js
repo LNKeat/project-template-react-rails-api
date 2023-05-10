@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { CamperContext } from '../App';
 
-
+// To do: fix initital state on deleteSite to equal the site number of the first site
 function AdminForm({ campsites, setCampsites }) {
     const camper = useContext(CamperContext)
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
-        description: "formData.description",
-        img_url: "formData.img_url",
+        description: "",
+        img_url: "",
         reservations: [],
         site_number: 0,
     });
@@ -19,7 +19,13 @@ function AdminForm({ campsites, setCampsites }) {
         fetch("/admin-form")
             .then((r) => r.json())
             .then((data) => {
-                setFormData(data);
+                console.log(data)
+                const last_num = data.next_number
+                const first_num = data.first_site
+                const spreadData = {...formData, site_number: data.next_number  }
+                setFormData(spreadData)
+                setDeleteSite(first_num)
+                console.log("last: ", last_num, "first: ", first_num, "spread: ", spreadData)
             })
     }, [])
 
