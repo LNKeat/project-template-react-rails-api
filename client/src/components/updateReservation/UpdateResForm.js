@@ -1,13 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { CamperContext, CampsitesContext } from '../../pages/App';
+import { useNavigate } from 'react-router';
 
-function UpdateResForm({ reservation, setReservation, setShowRes }) {
+function UpdateResForm({ reservation, setReservation, setShowRes, camperReservations, setCamperReservations }) {
     // TO DO: catch & display errors from PUT request for updated reservation
     const camper = useContext(CamperContext)
     const campsites = useContext(CampsitesContext)
     const [startDate, setStartDate] = useState(reservation.start_date)
     const [endDate, setEndDate] = useState(reservation.end_date)
     const [errors, setErrors] = useState([])
+    console.log(camperReservations)
 
 
     function handleSubmit(event) {
@@ -24,8 +26,12 @@ function UpdateResForm({ reservation, setReservation, setShowRes }) {
             if (r.ok){
                 r.json()
                 .then((data) => {
+                    console.log("data: ", data)
                     setReservation(data)
                     setShowRes(false)
+                    const updResList = camperReservations.filter((res) => data.id != res.id)
+                    const finalUpdate = [data, ...updResList]
+                    setCamperReservations(finalUpdate)
                 })
             } else {
                 r.json()
