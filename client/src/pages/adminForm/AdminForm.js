@@ -10,11 +10,11 @@ function AdminForm({ campsites, setCampsites }) {
         description: "formData.description",
         img_url: "formData.img_url",
         reservations: [],
-        site_number: 0, 
+        site_number: 0,
         d_site_number: 0
     });
     const [errors, setErrors] = useState([])
-   
+
     useEffect(() => {
         fetch("/admin-form")
             .then((r) => r.json())
@@ -116,7 +116,7 @@ function AdminForm({ campsites, setCampsites }) {
                                 <br />
                                 <button type="submit">Submit</button>
                             </form>
-                            <ul style={{color:"red"}}>
+                            <ul style={{ color: "red" }}>
                                 {errors.map((error, ind) => (
                                     <li key={ind}>{error}</li>
                                 ))}
@@ -127,13 +127,19 @@ function AdminForm({ campsites, setCampsites }) {
                             {/* delete campsite */}
 
                             <form onSubmit={handleDelete}>
-                                <label htmlFor="d_site_number">Campsite Number: </label>
+                                <select>
+                                    {campsites.map((site) => (
+                                        <option value={formData.d_site_number}>{site.site_number}</option>
+                                    ))}
+                                    
+                                </select>
+                                {/* <label htmlFor="d_site_number">Campsite Number: </label>
                                 <input
                                     type="number"
                                     id="d_site_number"
                                     value={formData.d_site_number}
                                     onChange={handleChange}
-                                />
+                                /> */}
                                 <br />
                                 <button type="submit">Delete</button>
                             </form>

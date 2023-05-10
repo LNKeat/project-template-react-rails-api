@@ -1,9 +1,13 @@
 
+body {
+  margin: 20px;
+  background-color: #badcc9;
+}
+
 #header {
   background-color:antiquewhite;
-  height: 400px;
+  height: 300px;
   padding: 20px;
-  margin: 20px;
   border: 0px;
 }
 

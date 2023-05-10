@@ -16,10 +16,11 @@ function Header({ camper, setCamper }) {
       <h1 style={{textAlign:"center"}}>Camp Here</h1>
       <section>
       {camper ? (
-        <>
+        <div style={{textAlign:"center"}}>
+          <a href="/"><button>Home</button></a>
           <button onClick={handleLogoutClick}>Logout</button>
           <a href="/my-reservations"><button>View my reservations</button></a>
-        </>
+        </div>
       ) : (
         <div id="wrapper">
           <div className="column">
