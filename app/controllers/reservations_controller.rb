@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+    before_action :authorize
 
     def index
         reservations = Reservation.all
@@ -11,21 +12,30 @@ class ReservationsController < ApplicationController
         render json: reservation, serializer: CamperUsernameSerializer
     end
 
-    def update
-        reservation = find_res
-        reservation.update!(params_permit)
-        render json: reservation, status: 200
-    end
-
     def create 
         res = Reservation.create!(params_permit)
         render json: res, status: :created
     end
 
+    def update
+        reservation = find_res
+        if @current_user.id === reservation.camper_id
+            reservation.update!(params_permit)
+            render json: reservation, status: 200
+        else
+            render json: {errors: "Not authorized"}, status: :unauthorized
+        end
+    end
+
+
     def destroy 
         reservation = find_res
-        reservation.delete
-        head :no_content
+        if @current_user.id === reservation.camper_id
+            reservation.delete
+            head :no_content
+        else
+            render json: {errors: "Not authorized"}, status: :unauthorized
+        end
     end
 
 

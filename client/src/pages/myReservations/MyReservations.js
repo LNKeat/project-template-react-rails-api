@@ -46,7 +46,7 @@ function MyReservations() {
       {camperReservations != 0 ? 
           <ul>
             {camperReservations.map((res) => (
-              <li key={res.id} style={{padding:"15px"}}>Campsite id: {res.campsite_id}, Campsite number: {find_site_number(res)}, Dates: {res.start_date} - {res.end_date}
+              <li key={res.id} style={{padding:"15px"}}>Campsite number: {find_site_number(res)}, Dates: {res.start_date} - {res.end_date}
               <br />
               <button onClick={() => handleUpdateClick(res)}>Update Reservation</button>
               <button onClick={() => handleDeleteClick(res)}>Delete Reservation</button>

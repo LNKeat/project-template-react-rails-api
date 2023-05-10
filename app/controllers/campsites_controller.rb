@@ -5,11 +5,11 @@ class CampsitesController < ApplicationController
         render json: campsites
     end
 
-    private
+    # private
 
-    def params_permit
-        params.permit(:id, :site_number, :description, :img_url, :reservations)
-    end
+    # def params_permit
+    #     params.permit(:id, :site_number, :description, :img_url, :reservations)
+    # end
 
    
 end
