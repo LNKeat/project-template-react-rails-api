@@ -20,12 +20,11 @@ function AdminForm({ campsites, setCampsites }) {
             .then((r) => r.json())
             .then((data) => {
                 console.log(data)
-                const last_num = data.next_number
+                const next_num = data.next_number
                 const first_num = data.first_site
-                const spreadData = {...formData, site_number: data.next_number  }
+                const spreadData = {...formData, site_number: next_num  }
                 setFormData(spreadData)
                 setDeleteSite(first_num)
-                console.log("last: ", last_num, "first: ", first_num, "spread: ", spreadData)
             })
     }, [])
 

@@ -9,7 +9,6 @@ function UpdateResForm({ reservation, setReservation, setShowRes, camperReservat
     const [startDate, setStartDate] = useState(reservation.start_date)
     const [endDate, setEndDate] = useState(reservation.end_date)
     const [errors, setErrors] = useState([])
-    console.log(camperReservations)
 
 
     function handleSubmit(event) {
@@ -26,7 +25,6 @@ function UpdateResForm({ reservation, setReservation, setShowRes, camperReservat
             if (r.ok){
                 r.json()
                 .then((data) => {
-                    console.log("data: ", data)
                     setReservation(data)
                     setShowRes(false)
                     const updResList = camperReservations.filter((res) => data.id != res.id)
