@@ -1,13 +1,14 @@
 import React, { useState, useContext } from 'react';
-import { CamperContext } from '../../pages/App';
+import { CamperContext, CampsitesContext } from '../../pages/App';
 
 function UpdateResForm({ reservation, setReservation, setShowRes }) {
     // TO DO: catch & display errors from PUT request for updated reservation
-
     const camper = useContext(CamperContext)
+    const campsites = useContext(CampsitesContext)
     const [startDate, setStartDate] = useState(reservation.start_date)
     const [endDate, setEndDate] = useState(reservation.end_date)
     const [errors, setErrors] = useState([])
+
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -33,9 +34,15 @@ function UpdateResForm({ reservation, setReservation, setShowRes }) {
         })   
     }
 
+    function findSiteNumber(){
+        const campsite = campsites.find((site) => site.id == reservation.campsite_id)
+        return campsite.site_number
+    }
+
     return (
         <div>
             <h3>Reservation id: {reservation.id}</h3>
+            <h4>Campsite number: {findSiteNumber()}</h4>
             <form onSubmit={handleSubmit}>
                 <label>Start Date:
                     <input

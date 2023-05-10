@@ -5,7 +5,6 @@ import UpdateResForm from '../../components/updateReservation/UpdateResForm';
 function MyReservations() {
   const camper = useContext(CamperContext)
   const campsites = useContext(CampsitesContext)
-  const [username, setUsername] = useState("")
   const [camperReservations, setCamperReservations] = useState([])
   const [showRes, setShowRes] = useState(false)
   const [reservation, setReservation] = useState({})
@@ -25,13 +24,13 @@ function MyReservations() {
   }
 
   function handleDeleteClick(res){
+
     fetch(`/reservations/${res.id}`, { 
       method: "DELETE" 
     }).then((r) => {
       if (r.ok) {
-        const updatedReservations = camper.reservations.filter((r) => r.id !== res.id)
-        setCamperReservations(updatedReservations)
-
+        const updated = camper.reservations.filter((ele) => ele.id != res.id)
+        setCamperReservations(updated)      
       }
     })
   }
@@ -44,15 +43,18 @@ function MyReservations() {
         {showRes && <UpdateResForm reservation={reservation} setReservation={setReservation} setShowRes={setShowRes} />}
         <hr />
       {/* list of camper's reservations */}
+      {camperReservations != 0 ? 
           <ul>
             {camperReservations.map((res) => (
-              <li key={res.id} style={{padding:"15px"}}>Campsite: {find_site_number(res)} , Dates: {res.start_date} - {res.end_date}
+              <li key={res.id} style={{padding:"15px"}}>Campsite id: {res.campsite_id} Campsite number: {find_site_number(res)} , Dates: {res.start_date} - {res.end_date}
               <br />
               <button onClick={() => handleUpdateClick(res)}>Update Reservation</button>
               <button onClick={() => handleDeleteClick(res)}>Delete Reservation</button>
               </li>
-            ))}
-          </ul>
+            )) 
+          }
+          </ul> : 
+          <h2>No reservations to display</h2>}
     </>}
     </div>
   )
