@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   # login
+  # gets params from the login page, checks that the user exists and the password matches the stored password in the database, authenticating the user. Then stores that user into the session hash.  
     def create
       camper = Camper.find_by(username: params[:username])
       if camper&.authenticate(params[:password])
@@ -10,6 +11,8 @@ class SessionsController < ApplicationController
         end
     end
 
+    #logout
+    #removes user from the session hash
     def destroy 
       session.delete :camper_id
       head :no_content

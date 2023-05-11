@@ -19,7 +19,6 @@ function AdminForm({ campsites, setCampsites }) {
         fetch("/admin-form")
             .then((r) => r.json())
             .then((data) => {
-                console.log(data)
                 const next_num = data.next_number
                 const first_num = data.first_site
                 const spreadData = {...formData, site_number: next_num  }
@@ -67,7 +66,6 @@ function AdminForm({ campsites, setCampsites }) {
     function handleDelete(e) {
         e.preventDefault();
         const campsite = campsites.find((site) => site.site_number == deleteSite);
-        console.log("id: ", campsite)
         fetch(`/admin-form/${campsite.id}`, {
             method: "DELETE",
         })

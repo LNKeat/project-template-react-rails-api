@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { CamperContext, CampsitesContext } from '../../pages/App';
-import { useNavigate } from 'react-router';
 
 function UpdateResForm({ reservation, setReservation, setShowRes, camperReservations, setCamperReservations }) {
     // TO DO: catch & display errors from PUT request for updated reservation

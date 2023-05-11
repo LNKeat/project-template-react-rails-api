@@ -17,9 +17,9 @@ function Header({ camper, setCamper }) {
       <section>
       {camper ? (
         <div style={{textAlign:"center"}}>
-          <a href="/"><button>Home</button></a>
+          <a href="/"><button>Campsites</button></a>
           <button onClick={handleLogoutClick}>Logout</button>
-          <a href="/my-reservations"><button>View my reservations</button></a>
+          <a href="/my-reservations"><button>My Reservations</button></a>
         </div>
       ) : (
         <div id="wrapper">

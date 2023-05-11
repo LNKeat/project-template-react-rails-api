@@ -1,10 +1,13 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { CamperContext } from '../../pages/App';
 
 function CreateReservationForm({ site, setViewSite }) {
     const camper = useContext(CamperContext)
+    const navigate = useNavigate()
     const [startDate, setStartDate] = useState("2023-05-24")
     const [endDate, setEndDate] = useState("2023-05-24")
+    const [updated, setUpdated] = useState(false)
     const [errors, setErrors] = useState([])
 
 
@@ -33,7 +36,9 @@ function CreateReservationForm({ site, setViewSite }) {
         })
             .then((r) => {
                 if (r.ok) {
-                    console.log('res success')
+                    // do something here to show that a reservation was successful
+                    console.log('Successful reservation')
+                    setUpdated(true)
                 } else {
                     r.json().then((details) => setErrors(details.errors))
                 }
@@ -62,7 +67,11 @@ function CreateReservationForm({ site, setViewSite }) {
                     value={endDate}
                     onChange={handleEndDateChange}
                 />
-                <button type="submit">Submit</button>
+                {!updated ?
+                    <button type="submit">Submit</button>
+                    :
+                    <h4>Reservation succesfully booked</h4>
+                }
             </form>
             <ul style={{ color: "red" }}>
                 {errors.map((error, ind) => (

@@ -2,7 +2,6 @@ import React from 'react'
 
 function Campsite({ site, setSelectedSite, selectedSite, setViewSite }) {
   function handleRequestClick(){
-    console.log("clicked")
     setSelectedSite(site)
     setViewSite(true)
   }
