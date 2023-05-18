@@ -27,6 +27,6 @@ class AdminFormController < ApplicationController
     private
 
     def params_permit
-        params.permit(:id, :site_number, :description, :img_url, :reservations)
+        params.permit(:site_number, :description, :img_url, :reservations)
     end
 end
