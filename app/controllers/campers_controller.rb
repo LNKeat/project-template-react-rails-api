@@ -16,14 +16,6 @@ class CampersController < ApplicationController
           render json: camper
     end
 
-    def get_campsite-3
-        camper = Camper.find_by(id: params[:camper_id])
-        # filter {|item| block } → ary or nil
-        reservations = camper.reservations.filter { |res| res.campsite.site_num == 3 }
-        
-        render json: 
-    end
-
     private
 
     def params_permit 

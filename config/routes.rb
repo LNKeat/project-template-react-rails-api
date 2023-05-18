@@ -10,6 +10,5 @@ Rails.application.routes.draw do
   get "/admin-form", to: "admin_form#index"
   post "/admin-form", to: "admin_form#create"
   delete "/admin-form/:id", to: "admin_form#destroy"
-  get "/campers/:id/reservations-campsite-3", to: "campers#get_campsite-3"
 
 end
