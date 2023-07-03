@@ -20,6 +20,7 @@ function CreateReservationForm({ site, setViewSite }) {
     };
 
     function handleSubmit(e) {
+        setErrors([])
         e.preventDefault()
         const newRes = {
             camper_id: camper.id,
